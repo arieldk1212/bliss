@@ -1,2 +1,2 @@
 # bliss
-advanced, user-friendly and blissful HTTP client written in c++.
+advanced, user-friendly and blissful HTTP library written in c++.

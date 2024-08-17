@@ -1,3 +1,5 @@
 1. Basic CMakeLists structure for the project.
 2. create socket structure for the requests.
 3. study RFC7230-7235 for HTTP/1.1.
+4. try to look and compare with "requests".
+5. start with sockets handling, then start implementing all the RFC's in the project.
