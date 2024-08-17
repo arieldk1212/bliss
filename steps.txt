@@ -1,0 +1,2 @@
+1. Basic CMakeLists structure for the project.
+2. figure out TCP/IP implementation.
