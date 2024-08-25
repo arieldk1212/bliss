@@ -5,9 +5,13 @@
 #include <cstdint>
 #include <iostream>
 
+#define LOCALHOST "127.0.0.1"
+#define PORT 8080
+
 class Socket {
 public:
-  Socket() {};
+  Socket()
+  : m_socket_ip_address(LOCALHOST), m_socket_port(PORT) {};
   Socket(const char* ip, uint16_t port)
   : m_socket_ip_address(ip), m_socket_port(port) {}
   virtual ~Socket() { std::cout << "Socket Deleted."; }
@@ -25,7 +29,7 @@ private:
 // make it generic for future updates, maybe user-agent or server.
 class ClientSocket : public Socket {
 private:
-
+  
 };
 
 #endif
