@@ -1,0 +1,29 @@
+#ifndef TCP_H
+#define TCP_H
+
+#include <sys/socket.h>
+#include <cstdint>
+#include <iostream>
+
+class Socket {
+private:
+  const char* m_socket_ip_address;
+  uint16_t m_socket_port;
+public:
+  Socket() {};
+  Socket(const char* ip, uint16_t port)
+  : m_socket_ip_address(ip), m_socket_port(port) {}
+  virtual ~Socket() { std::cout << "Socket Deleted."; }
+
+  void set_ip_address(const char* socket_ip_address) { m_socket_ip_address = socket_ip_address; }
+  void set_port(uint16_t socket_port) { m_socket_port = socket_port; }
+
+  const Socket& socket_info() const { return *this; }
+};
+
+class ClientSocket : public Socket {
+private:
+
+};
+
+#endif
