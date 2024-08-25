@@ -1,12 +1,12 @@
 [submodule "cpr"]
-	path = cpr
+	path = lib/cpr
 	url = https://github.com/libcpr/cpr
 [submodule "requests"]
-	path = requests
+	path = lib/requests
 	url = https://github.com/psf/requests
 [submodule "http"]
-	path = http
+	path = lib/http
 	url = https://github.com/mfichman/http
 [submodule "cppcoro"]
-	path = cppcoro
+	path = lib/cppcoro
 	url = https://github.com/lewissbaker/cppcoro
