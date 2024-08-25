@@ -26,14 +26,14 @@ void Socket::set_ip_address(const char* socket_ip_address) { m_socket_ip_address
 void Socket::set_port(uint16_t socket_port) { m_socket_port = socket_port; }
 
 const Socket& Socket::socket_info() const { 
-  std::cout << "SOCKET INFO - IP: " << m_socket_ip_address << ", PORT: " << m_socket_port << ".\n"; 
+  std::cout << "SOCKET - IP: " << m_socket_ip_address << ", PORT: " << m_socket_port << ".\n"; 
   return *this;
 }
 
 void Socket::connect_socket() {
   struct sockaddr_in server_addr;
   memset(&server_addr, 0, sizeof(server_addr));
-  server_addr.sin_family = AF_INET;
+  server_addr.sin_addr.s_addr = inet_addr(m_socket_ip_address);
   server_addr.sin_port = htons(m_socket_port);
 
   if (inet_pton(AF_INET, m_socket_ip_address, &server_addr.sin_addr) <= 0) {
