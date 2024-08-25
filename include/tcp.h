@@ -29,7 +29,7 @@ private:
 // make it generic for future updates, maybe user-agent or server.
 class ClientSocket : public Socket {
 private:
-  
+
 };
 
 #endif
