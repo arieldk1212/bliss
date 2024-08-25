@@ -1,32 +1,44 @@
 #ifndef TCP_H
 #define TCP_H
 
-#include <sys/socket.h>
-#include <cstdint>
 #include <iostream>
+#include <cstring>
+#include <cstdint>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 
-#define LOCALHOST "127.0.0.1"
-#define PORT 8080
+#define DEFAULT_HOST "127.0.0.1"
+#define DEFAULT_PORT 8080
 
 class Socket {
 public:
-  Socket()
-  : m_socket_ip_address(LOCALHOST), m_socket_port(PORT) {};
-  Socket(const char* ip, uint16_t port)
-  : m_socket_ip_address(ip), m_socket_port(port) {}
-  virtual ~Socket() { std::cout << "Socket Deleted."; }
+  Socket();
+  Socket(const char* ip, uint16_t port);
+  ~Socket();
 
-  void set_ip_address(const char* socket_ip_address) { m_socket_ip_address = socket_ip_address; }
-  void set_port(uint16_t socket_port) { m_socket_port = socket_port; }
+  void set_ip_address(const char* socket_ip_address);
+  void set_port(uint16_t socket_port);
 
-  const Socket& socket_info() const { return *this; }
+  // socket_info(const *this), returns const *this (unchangeable).
+  const Socket& socket_info() const;
+
+  void connect_socket();
+  void close_socket();
+  // for send function we need to call send and add in it -> socket, buffer (our case is data)
+  // this funnction needs to accept the request!
+  void send();
+
 private:
   const char* m_socket_ip_address;
   uint16_t m_socket_port;
+  int socket_fd;
 };
 
 
-// make it generic for future updates, maybe user-agent or server.
-// class ClientSocket : public Socket {};
+// TODO: 
+// 1. make it generic for future updates, maybe user-agent or server.
+//    class ClientSocket : public Socket {};
+// 2. after finishing delete all the success cout's in the tcp.cpp file, ONLY error handling.
 
 #endif
