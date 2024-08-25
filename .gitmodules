@@ -1,0 +1,9 @@
+[submodule "cpr"]
+	path = cpr
+	url = https://github.com/libcpr/cpr
+[submodule "requests"]
+	path = requests
+	url = https://github.com/psf/requests
+[submodule "http"]
+	path = http
+	url = https://github.com/mfichman/http

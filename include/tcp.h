@@ -6,9 +6,6 @@
 #include <iostream>
 
 class Socket {
-private:
-  const char* m_socket_ip_address;
-  uint16_t m_socket_port;
 public:
   Socket() {};
   Socket(const char* ip, uint16_t port)
@@ -19,8 +16,13 @@ public:
   void set_port(uint16_t socket_port) { m_socket_port = socket_port; }
 
   const Socket& socket_info() const { return *this; }
+private:
+  const char* m_socket_ip_address;
+  uint16_t m_socket_port;
 };
 
+
+// make it generic for future updates, maybe user-agent or server.
 class ClientSocket : public Socket {
 private:
 
