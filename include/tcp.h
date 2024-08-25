@@ -8,9 +8,6 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-#define DEFAULT_HOST "127.0.0.1"
-#define DEFAULT_PORT 8080
-
 class Socket {
 public:
   Socket();
@@ -39,6 +36,5 @@ private:
 // TODO: 
 // 1. make it generic for future updates, maybe user-agent or server.
 //    class ClientSocket : public Socket {};
-// 2. after finishing delete all the success cout's in the tcp.cpp file, ONLY error handling.
 
 #endif

@@ -1,5 +1,8 @@
 #include "../include/tcp.h"
 
+#define DEFAULT_HOST "127.0.0.1"
+#define DEFAULT_PORT 8080
+
 Socket::Socket()
 : m_socket_ip_address(DEFAULT_HOST), m_socket_port(DEFAULT_PORT), socket_fd(-1) {
   // socket initialization
@@ -7,7 +10,8 @@ Socket::Socket()
   if (socket_fd == -1) {
     std::cerr << "Failed to Create Socket." << "\n";
     exit(EXIT_SUCCESS);
-  } std::cout << "Socket Created." << "\n";
+  // } std::cout << "Socket Created." << "\n";
+  }
 }
 
 Socket::Socket(const char* ip, uint16_t port)
@@ -17,10 +21,11 @@ Socket::Socket(const char* ip, uint16_t port)
   if (socket_fd == -1) {
     std::cerr << "Failed to Create Socket." << "\n";
     exit(EXIT_SUCCESS);
-  } std::cout << "Socket Created." << "\n";
+  // } std::cout << "Socket Created." << "\n";
+  }
 }
 
-Socket:: ~Socket() { close_socket(); std::cout << "Socket Deleted Successfully." << "\n"; }
+Socket:: ~Socket() { close_socket(); /*std::cout << "Socket Deleted Successfully." << "\n";*/ }
 
 void Socket::set_ip_address(const char* socket_ip_address) { m_socket_ip_address = socket_ip_address; }
 void Socket::set_port(uint16_t socket_port) { m_socket_port = socket_port; }
@@ -38,16 +43,18 @@ void Socket::connect_socket() {
 
   if (inet_pton(AF_INET, m_socket_ip_address, &server_addr.sin_addr) <= 0) {
     perror("error");
-  } else { std::cout << "Address OK." << "\n"; }
+  // } else { std::cout << "Address OK." << "\n"; }
+  } else { }
 
   if (connect(socket_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
     perror("connect");
-  } else { std::cout << "Connected Successfully." << "\n"; }
+  // } else { std::cout << "Connected Successfully." << "\n"; }
+  } else { }
 }
 
 void Socket::close_socket() {
   if (socket_fd != -1) {
     close(socket_fd);
-    std::cout << "Socket Closed Successfully." << "\n";
+    // std::cout << "Socket Closed Successfully." << "\n";
   }
 }
