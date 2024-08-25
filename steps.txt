@@ -3,4 +3,4 @@
 3. study RFC7230-7235 for HTTP/1.1 -> finish later 7234, 7235.
 4. try to look and compare with "requests". -> In The Process.
 5. start with sockets handling, then start implementing all the RFC's in the project -> Not Done.
-6. Add cppcoro? Add curl?
+6. Add cppcoro?
