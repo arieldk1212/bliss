@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <string.h>
 
 class Socket {
 public:
@@ -14,17 +15,15 @@ public:
   Socket(const char* ip, uint16_t port);
   ~Socket();
 
-  void set_ip_address(const char* socket_ip_address);
-  void set_port(uint16_t socket_port);
-
   // socket_info(const *this), returns const *this (unchangeable).
   const Socket& socket_info() const;
 
+  void set_ip_address(const char* socket_ip_address);
+  void set_port(uint16_t socket_port);
+
   void connect_socket();
+  void send_socket();
   void close_socket();
-  // for send function we need to call send and add in it -> socket, buffer (our case is data)
-  // this funnction needs to accept the request!
-  void send();
 
 private:
   const char* m_socket_ip_address;

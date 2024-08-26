@@ -5,6 +5,7 @@ int main () {
   
   socket->socket_info();
   socket->connect_socket();
+  socket->send_socket();
 
   delete socket;
 
