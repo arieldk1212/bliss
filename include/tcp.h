@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <string>
 #include <string.h>
 
 #define DEFAULT_PORT 8080
@@ -16,21 +17,23 @@
 class Socket {
 public:
   Socket();
-  Socket(const char* ip, uint16_t port);
+  Socket(std::string ip, uint16_t port);
   ~Socket();
 
   // socket_info(const *this), returns const *this (unchangeable).
   const Socket& socket_info() const;
 
-  void set_ip_address(const char* socket_ip_address);
+  void set_ip_address(std::string socket_ip_address);
   void set_port(uint16_t socket_port);
+  std::string get_ip_address();
+  uint16_t get_port();
 
   void connect_socket();
-  void send_socket();
-  void close_socket();
+  bool send_socket();
+  bool close_socket();
 
 private:
-  const char* m_socket_ip_address;
+  std::string m_socket_ip_address;
   uint16_t m_socket_port;
   int socket_fd;
 };
