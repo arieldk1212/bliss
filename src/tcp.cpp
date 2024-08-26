@@ -1,9 +1,5 @@
 #include "../include/tcp.h"
 
-#define DEFAULT_PORT 8080
-#define DEFAULT_HOST "127.0.0.1"
-#define BUFFERLENGTH 80 * 1024
-
 Socket::Socket()
 : m_socket_ip_address(DEFAULT_HOST), m_socket_port(DEFAULT_PORT), socket_fd(-1) {
   socket_fd = socket(AF_INET, SOCK_STREAM, 0);

@@ -9,6 +9,10 @@
 #include <sys/socket.h>
 #include <string.h>
 
+#define DEFAULT_PORT 8080
+#define DEFAULT_HOST "127.0.0.1"
+#define BUFFERLENGTH 80 * 1024
+
 class Socket {
 public:
   Socket();
