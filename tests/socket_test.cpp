@@ -1,10 +1,11 @@
 #include "../include/tcp.h"
 
 int main () {
-  Socket* socket = new Socket("127.0.0.1", 8080);
+  Socket* socket = new Socket("162.159.137.70", 443);
   
   socket->connect_socket();
-  // socket->send_socket();
+  socket->send_socket();
+  std::cout << socket->receive();
 
   delete socket;
 
