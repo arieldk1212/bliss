@@ -34,32 +34,42 @@ void Socket::connect_socket() {
   server_addr.sin_port = htons(m_socket_port);
   if (inet_pton(AF_INET, m_socket_ip_address.c_str(), &server_addr.sin_addr) <= 0) {
     perror("inet_pton error");
-    // return 0;
-  } else {}
+  }
 
   if (connect(socket_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
     perror("connect");
-    // return 0;
-  } else {}
+    return;
+  }
 }
 
 bool Socket::send_socket() {
-  std::string path = "/authors.txt";
-  std::string host = "data.pr4e.org";
+  std::string path = "/reference/cassert/assert/";
+  std::string host = "cplusplus.com";
   std::string request = "GET " + path + " HTTP/1.1\n";
+  request += "Accept: text/html\n";
+  request += "Connection: keep-alive\n";
   request += "Host: " + host + "\n";
   request += "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\n";
+  request += "Accept: */*\n";
   request += "\n";
-  // int bytes = send(socket_fd, request.c_str(), request.length(), 0);
+
   if (send(socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
     perror("send error: ");
     return 0;
-  } std::cout << "data sent"; return 1;
+  } std::cout << "**data sent**" << "\n"; return 1;
+}
+
+std::string Socket::receive() {
+  char buffer[BUFFER_LENGTH];
+  std::string replay;
+  if (recv(socket_fd, buffer, sizeof(buffer), 0) < 0) {
+    puts("recv failed");
+  } replay = buffer; return replay;
 }
 
 bool Socket::close_socket() {
-  if (socket_fd != -1) {
-    close(socket_fd);
-    return 1;
-  } return 0;
-}
+  // if (socket_fd != -1) {
+  close(socket_fd);
+  std::cout << "**closed**" << "\n";
+  return 1; 
+} 

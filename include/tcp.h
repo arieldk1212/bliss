@@ -10,9 +10,9 @@
 #include <string>
 #include <string.h>
 
-#define DEFAULT_PORT 8080
+#define DEFAULT_PORT 443 // http
 #define DEFAULT_HOST "127.0.0.1"
-#define BUFFERLENGTH 80 * 1024
+#define BUFFER_LENGTH 80 * 1024
 
 class Socket {
 public:
@@ -30,6 +30,7 @@ public:
 
   void connect_socket();
   bool send_socket();
+  std::string receive();
   bool close_socket();
 
 private:
