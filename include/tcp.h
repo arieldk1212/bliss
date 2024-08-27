@@ -37,9 +37,4 @@ private:
   int socket_fd;
 };
 
-
-// TODO: 
-// 1. make it generic for future updates, maybe user-agent or server.
-//    class ClientSocket : public Socket {};
-
 #endif

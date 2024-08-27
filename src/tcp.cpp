@@ -5,8 +5,7 @@ Socket::Socket()
   socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (socket_fd == -1) {
     std::cerr << "Failed to Create Socket." << "\n";
-    exit(EXIT_SUCCESS);
-  }
+    exit(EXIT_SUCCESS); }
 }
 
 Socket::Socket(std::string ip, uint16_t port)
@@ -14,11 +13,10 @@ Socket::Socket(std::string ip, uint16_t port)
   socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (socket_fd == -1) {
     std::cerr << "Failed to Create Socket." << "\n";
-    exit(EXIT_SUCCESS);
-  }
+    exit(EXIT_SUCCESS); }
 }
 
-Socket:: ~Socket() { close_socket(); }
+Socket:: ~Socket() { close(socket_fd); std::cout << "**closed**" << "\n"; }
 
 const Socket& Socket::socket_info() const { return *this; }
 
@@ -33,28 +31,17 @@ void Socket::connect_socket() {
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = htons(m_socket_port);
   if (inet_pton(AF_INET, m_socket_address.c_str(), &server_addr.sin_addr) <= 0) {
-    perror("inet_pton error");
-  }
-
+    perror("inet_pton error"); }
   if (connect(socket_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-    perror("connect");
-  }
+    perror("connect"); }
 }
 
 void Socket::send_socket() {
-  std::string path = "/reference/cassert/assert/";
-  std::string host = "cplusplus.com";
-  std::string request = "GET " + path + " HTTP/1.1\n";
-  request += "Accept: text/html\n";
-  request += "Connection: keep-alive\n";
-  request += "Host: " + host + "\n";
-  request += "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\n";
-  request += "Accept: */*\n";
-  request += "\n";
-
+  // add dynamic mem allo in the buffer ( int* x = malloc(n * sizeof(int)); )
+  std::string request ="GET";
   if (send(socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
     perror("send error: ");
-  } std::cout << "**data sent**" << "\n";
+  }
 }
 
 std::string Socket::receive() {
@@ -67,5 +54,4 @@ std::string Socket::receive() {
 
 void Socket::close_socket() {
   close(socket_fd);
-  std::cout << "**closed**" << "\n";
 } 

@@ -6,8 +6,8 @@ int main () {
   std::unique_ptr<Socket> socket = std::make_unique<Socket>("54.39.7.252", 80);
   
   socket->connect_socket();
-  socket->send_socket();
-  std::cout << socket->receive();
+  // socket->send_socket();
+  // std::cout << socket->receive();
 
   // delete socket;
 
