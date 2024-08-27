@@ -37,7 +37,11 @@
     "utility": "cpp",
     "variant": "cpp",
     "bit": "cpp",
-    "chrono": "cpp"
+    "chrono": "cpp",
+    "cmath": "cpp",
+    "compare": "cpp",
+    "numeric": "cpp",
+    "limits": "cpp"
   },
   "editor.fontFamily": "SF Mono, Monaco, Menlo, 'Courier New', monospace",
   "terminal.integrated.fontFamily": "SF Mono, Monaco, Menlo, 'Courier New', monospace",

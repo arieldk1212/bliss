@@ -10,31 +10,29 @@
 #include <string>
 #include <string.h>
 
-#define DEFAULT_PORT 443 // http
-#define DEFAULT_HOST "127.0.0.1"
 #define BUFFER_LENGTH 80 * 1024
 
 class Socket {
 public:
   Socket();
-  Socket(std::string ip, uint16_t port);
+  Socket(std::string, uint16_t);
   ~Socket();
 
   // socket_info(const *this), returns const *this (unchangeable).
   const Socket& socket_info() const;
 
-  void set_ip_address(std::string socket_ip_address);
-  void set_port(uint16_t socket_port);
+  void set_address(std::string);
+  void set_port(uint16_t);
   std::string get_ip_address();
   uint16_t get_port();
 
   void connect_socket();
-  bool send_socket();
+  void send_socket();
   std::string receive();
-  bool close_socket();
+  void close_socket();
 
 private:
-  std::string m_socket_ip_address;
+  std::string m_socket_address;
   uint16_t m_socket_port;
   int socket_fd;
 };
