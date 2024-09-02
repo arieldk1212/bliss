@@ -1,5 +1,5 @@
-#ifndef TCP_H
-#define TCP_H
+#ifndef BASE_H
+#define BASE_H
 
 #include <iostream>
 #include <cstring>
@@ -15,26 +15,22 @@
 class Socket {
 public:
   Socket();
-  Socket(std::string, uint16_t);
+  Socket(std::string socket_ip_address, uint16_t socket_port);
   ~Socket();
 
-  // socket_info(const *this), returns const *this (unchangeable).
-  const Socket& socket_info() const;
-
-  void set_address(std::string);
-  void set_port(uint16_t);
-  std::string get_ip_address();
-  uint16_t get_port();
+  const Socket& socket_info() const; // socket_info(const *this), returns const *this (unchangeable).
+  void set_port(uint16_t socket_port);
+  void set_address(std::string socket_ip_address);
 
   void connect_socket();
-  void send_socket();
+  void send_socket(std::string request);
   std::string receive();
-  void close_socket();
+  void terminate();
 
 private:
   std::string m_socket_address;
   uint16_t m_socket_port;
-  int socket_fd;
+  int m_socket_fd;
 };
 
 #endif

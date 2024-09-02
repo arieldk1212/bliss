@@ -10,3 +10,6 @@
 [submodule "cppcoro"]
 	path = lib/cppcoro
 	url = https://github.com/lewissbaker/cppcoro
+[submodule "lib/restclient-cpp"]
+	path = lib/restclient-cpp
+	url = https://github.com/mrtazz/restclient-cpp.git

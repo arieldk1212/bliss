@@ -1,5 +1,4 @@
 1. Basic CMakeLists structure for the project -> Not Done.
-2. create socket structure for the requests -> Done.
 3. finish later 7234, 7235.
-4. Add cppcoro?
+4. Add cppcoro? add logging?
 5. make a generic alogrithm that transforms request headers into one line for socket sending.
