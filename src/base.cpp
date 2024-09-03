@@ -1,25 +1,25 @@
-#include "base.h"
+#include "../include/base.h"
 
 Socket::Socket()
 : m_socket_fd(-1) {
   m_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (m_socket_fd == -1) {
-    std::cerr << "Failed to Create Socket." << "\n";
+    std::cerr << "socket creation error." << "\n";
     exit(EXIT_SUCCESS); }
 }
 Socket::Socket(std::string socket_ip_address, uint16_t socket_port)
 : m_socket_address(socket_ip_address), m_socket_port(socket_port), m_socket_fd(-1) {
   m_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (m_socket_fd == -1) {
-    std::cerr << "Failed to Create Socket." << "\n";
+    std::cerr << "socket creation error." << "\n";
     exit(EXIT_SUCCESS); }
 }
 
 Socket:: ~Socket() { terminate(); }
 
 const Socket& Socket::socket_info() const { return *this; }
-void Socket::set_port(uint16_t socket_port) { m_socket_port = socket_port; }
-void Socket::set_address(std::string socket_ip_address) { m_socket_address = socket_ip_address; }
+void Socket::set_port(uint16_t& socket_port) { m_socket_port = socket_port; }
+void Socket::set_address(std::string& socket_ip_address) { m_socket_address = socket_ip_address; }
 
 
 void Socket::connect_socket() {
@@ -33,7 +33,7 @@ void Socket::connect_socket() {
     perror("connect"); }
 }
 
-void Socket::send_socket(std::string request) {
+void Socket::send_socket(std::string& request) {
   // add dynamic memory allocation in the buffer ( int* x = malloc(n * sizeof(int)); )
   if (send(m_socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
     perror("send error: "); }
@@ -41,11 +41,11 @@ void Socket::send_socket(std::string request) {
 
 std::string Socket::receive() {
   char buffer[BUFFER_LENGTH];
-  std::string response;
+  std::string replay;
   if (recv(m_socket_fd, buffer, sizeof(buffer), 0) < 0) {
     puts("recv failed");
-  } response = buffer;
-  return response;
+  } replay = buffer;
+  return replay;
 }
 
 void Socket::terminate() { close(m_socket_fd); } 
