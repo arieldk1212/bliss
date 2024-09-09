@@ -21,7 +21,6 @@ const Socket& Socket::socket_info() const { return *this; }
 void Socket::set_port(uint16_t& socket_port) { m_socket_port = socket_port; }
 void Socket::set_address(std::string& socket_ip_address) { m_socket_address = socket_ip_address; }
 
-
 void Socket::connect_socket() {
   struct sockaddr_in server_addr;
   server_addr.sin_addr.s_addr = inet_addr(m_socket_address.c_str());

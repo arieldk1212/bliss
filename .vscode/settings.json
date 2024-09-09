@@ -43,7 +43,9 @@
     "numeric": "cpp",
     "limits": "cpp"
   },
-  "editor.fontFamily": "SF Mono, Monaco, Menlo, 'Courier New', monospace",
   "terminal.integrated.fontFamily": "SF Mono, Monaco, Menlo, 'Courier New', monospace",
-  "terminal.integrated.fontSize": 15
+  "terminal.integrated.fontSize": 15,
+  "files.autoSave": "afterDelay",
+  "editor.tabSize": 2,
+  "editor.fontSize": 13
 }

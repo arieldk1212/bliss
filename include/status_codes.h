@@ -1,6 +1,5 @@
 // create enum
 
 class StatusCode {
-private:
-  
+public:
 };
