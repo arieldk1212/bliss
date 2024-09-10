@@ -19,7 +19,7 @@ public:
   ~Socket();
 
   const Socket& socket_info() const; // socket_info(const *this), returns const *this (unchangeable).
-  void set_port(uint16_t& socket_port);
+  void set_port(uint16_t socket_port);
   void set_address(std::string& socket_ip_address);
 
   void connect_socket();

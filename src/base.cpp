@@ -18,7 +18,7 @@ Socket::Socket(std::string socket_ip_address, uint16_t socket_port)
 Socket:: ~Socket() { terminate(); }
 
 const Socket& Socket::socket_info() const { return *this; }
-void Socket::set_port(uint16_t& socket_port) { m_socket_port = socket_port; }
+void Socket::set_port(uint16_t socket_port) { m_socket_port = socket_port; }
 void Socket::set_address(std::string& socket_ip_address) { m_socket_address = socket_ip_address; }
 
 void Socket::connect_socket() {
