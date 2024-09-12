@@ -15,17 +15,19 @@
 class Socket {
 public:
   Socket();
-  Socket(std::string socket_ip_address, uint16_t socket_port);
+  Socket(const std::string& socket_ip_address, uint16_t socket_port);
   ~Socket();
 
-  const Socket& socket_info() const; // socket_info(const *this), returns const *this (unchangeable).
   void set_port(uint16_t socket_port);
-  void set_address(std::string& socket_ip_address);
+  void set_address(const std::string& socket_ip_address);
 
   void connect_socket();
-  void send_socket(std::string& request);
-  std::string receive();
   void terminate();
+  void send_socket(const std::string& request);
+  std::string receive();
+
+  // INFO socket_info(const *this), returns const *this (unchangeable).
+  const Socket& socket_info() const; 
 
 private:
   std::string m_socket_address;

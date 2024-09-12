@@ -1,16 +1,15 @@
 /*
 :REQUEST EXAMPLE:
 std::string path = "/reference/cassert/assert/";
-std::string host = "cplusplus.com";
-std::string request = "GET " + path + " HTTP/1.1\n";
-request += "Accept: text/html\n";
-request += "Connection: keep-alive\n";
-request += "Host: " + host + "\n";
+std::string request = "GET /refrence/cassert/asset HTTP/1.1\n";
+request += "Host: cplusplus.com\n";
 request += "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\n";
+request += "Accept: star/star\n";
+request += "Connection: keep-alive\n";
 request += "\n";
 */
 
-// need to configure request size, ssl handshake, need to add Headers!!!!!
+// TODO need to configure request size, ssl handshake, need to add Headers!!!!!
 
 #ifndef REQUEST_H
 #define REQUEST_H
@@ -20,23 +19,26 @@ request += "\n";
 #include "utils.h"
 #include "response.h"
 
-const std::string PROTOCOL_VERSION = "HTTP/1.1";
+const std::string PROTOCOL_VERSION = "HTTP/1.1"; // TODO maybe implement it inside the request class.
 
 class Request {
 public:
   Request();
-  Request(std::string& url);
-  Request(std::string& url, std::string& username, std::string& password); // need to fix ip_address, port.
+  // INFO set to const due to rvalue we are when passing string that isnt allocated, ref to manage mem allo.
+  // (std::string&& x) -> only rvalue accepted | (const std::string& x) -> rvalue and lvalue accepted | (std::string& x) -> only lvalue accepted.
+  // (std::string x) -> every thing.
+  // can also overload it in a ctor -> most pref!
+  // lvalue - storage, rvalue - temp.
+  Request(const std::string& url);
+  Request(const std::string& url, const std::string& username, const std::string& password);
 
   ~Request();
 
-  std::string set_parse_host(std::string& url);
-  std::string set_parse_path(std::string& url);
-
-  void set_request_data(std::string& request_data);
-  void set_basic_auth(std::string& username, std::string& password);
+  void set_base_url(const std::string& url);
+  void set_request_data(const std::string& request_data);
+  void set_basic_auth(const std::string& username, const std::string& password);
   void set_url_host();
-  void set_url_path();
+  void set_host_ip();
 
   Response get();
   Response post();
@@ -48,12 +50,13 @@ public:
 
 private:
   Socket* m_client_socket;
-  std::string m_request_data;
-  std::string m_user_agent = generate_user_agent();
+  const uint16_t HTTPS_PORT = 443; // TODO rethink that initialization.
+
   std::string m_base_url;
   std::string m_url_host;
-  std::string m_url_path;
-  std::string m_url_ip; // need to figure out for the socket constructor.
+  std::string m_host_ip;
+  std::string m_request_data;
+  std::string m_user_agent = generate_user_agent();
   struct {
     std::string m_username;
     std::string m_password;

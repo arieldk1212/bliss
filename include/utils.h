@@ -1,34 +1,16 @@
 #include <string>
-#include "request.h"
+#include <regex>
+#include <netdb.h>
+#include <cstring>
+#include <sys/types.h>
+#include "base.h"
 
-std::string get_os_info() {
-  #if defined(_WIN32)
-    return "Windows";
-  #elif defined(__linux__)
-    return "Linux";
-  #elif defined(__APPLE__)
-    return "macOS";
-  #else
-    return "Unknown OS";
-  #endif
-}
+inline std::string generate_user_agent() { return "BlissAgent/1.0 (" + get_os_info() + "; " + get_arch_info() + ")"; }
 
-std::string get_arch_info() {
-  #if defined(__x86_64__) || defined(_M_X64)
-    return "x86_64";
-  #elif defined(__i386) || defined(_M_IX86)
-    return "x86";
-  #elif defined(__aarch64__)
-    return "ARM64";
-  #elif defined(__arm__)
-    return "ARM";
-  #else
-    return "Unknown Architecture";
-  #endif
-}
+std::string get_os_info();
 
-std::string generate_user_agent() { return "BlissAgent/1.0 (" + get_os_info() + "; " + get_arch_info() + ")"; }
+std::string get_arch_info();
 
-std::string get_ip_from_host(std::string host) {
-  
-}
+std::string url_to_host(const std::string& url);
+
+std::string host_to_ip(const std::string& host);
