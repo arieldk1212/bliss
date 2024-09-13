@@ -1,6 +1,7 @@
 #include "../include/request.h"
 
 Request::Request() {
+  // INFO when initializing default ctor, need to configure and set the url of the request, and it will set host & ip and socket.
   m_client_socket = new Socket;
   m_client_socket->set_port(HTTPS_PORT);
 }

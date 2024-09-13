@@ -9,7 +9,7 @@ request += "Connection: keep-alive\n";
 request += "\n";
 */
 
-// TODO need to configure request size, ssl handshake, need to add Headers!!!!!
+// TODO need to configure request size, ssl handshake, need to add Headers!!!!! header class, response class, http .h that includes all the lib header files.
 
 #ifndef REQUEST_H
 #define REQUEST_H
@@ -18,8 +18,6 @@ request += "\n";
 #include "base.h"
 #include "utils.h"
 #include "response.h"
-
-const std::string PROTOCOL_VERSION = "HTTP/1.1"; // TODO maybe implement it inside the request class.
 
 class Request {
 public:
@@ -34,11 +32,14 @@ public:
 
   ~Request();
 
+  const std::string PROTOCOL_VERSION = "HTTP/1.1";
+
   void set_base_url(const std::string& url);
   void set_request_data(const std::string& request_data);
   void set_basic_auth(const std::string& username, const std::string& password);
   void set_url_host();
   void set_host_ip();
+
 
   Response get();
   Response post();

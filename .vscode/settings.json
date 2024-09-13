@@ -48,5 +48,6 @@
   "terminal.integrated.fontSize": 15,
   "files.autoSave": "afterDelay",
   "editor.tabSize": 2,
-  "editor.fontSize": 13
+  "editor.fontSize": 13,
+  "cmake.ignoreCMakeListsMissing": true
 }
