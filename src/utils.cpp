@@ -1,5 +1,7 @@
 #include "../include/utils.h"
 
+std::string generate_user_agent() { return "BlissAgent/1.0 (" + get_os_info() + "; " + get_arch_info() + ")"; }
+
 std::string get_os_info() {
   #if defined(_WIN32)
     return "Windows";

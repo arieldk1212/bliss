@@ -1,0 +1,18 @@
+1. need to configure request size
+2. ssl handshake
+3. header class
+4. response class
+5. make a timeit function for actions.
+6. configure algorithm for timeout in http methods.
+7. use sstream for the request builder.
+
+***
+:REQUEST EXAMPLE:
+std::string path = "/reference/cassert/assert/";
+std::string request = "GET /refrence/cassert/asset HTTP/1.1\n";
+request += "Host: cplusplus.com\n";
+request += "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\n";
+request += "Accept: star/star\n";
+request += "Connection: keep-alive\n";
+request += "\n";
+***
