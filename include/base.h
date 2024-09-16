@@ -20,15 +20,14 @@ public:
 
   void set_port(uint16_t socket_port);
   void set_address(const std::string& socket_ip_address);
+  // INFO socket_info(const *this), returns const *this (unchangeable).
+  const Socket& socket_info() const; 
 
+private:
   void connect_socket();
   void terminate();
   void send_socket(const std::string& request);
   std::string receive();
-
-  // INFO socket_info(const *this), returns const *this (unchangeable).
-  const Socket& socket_info() const; 
-
 private:
   std::string m_socket_address;
   uint16_t m_socket_port;

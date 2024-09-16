@@ -12,11 +12,6 @@ constexpr uint16_t HTTPS_PORT = 443;
 class Request {
 public:
   Request();
-  // INFO set to const due to rvalue we are when passing string that isnt allocated, ref to manage mem allo.
-  // (std::string&& x) -> only rvalue accepted | (const std::string& x) -> rvalue and lvalue accepted | (std::string& x) -> only lvalue accepted.
-  // (std::string x) -> every thing.
-  // can also overload it in a ctor -> most pref!
-  // lvalue - storage, rvalue - temp.
   Request(const std::string& url);
   Request(const std::string& url, const std::string& username, const std::string& password);
 
@@ -37,6 +32,9 @@ public:
   Response head();
 
 private:
+  void set_url_host();
+  void set_host_ip();
+private:
   Socket* m_client_socket;
   int m_timeout;
   std::string m_base_url;
@@ -48,9 +46,6 @@ private:
     std::string m_username;
     std::string m_password;
   } m_basic_auth;
-
-  void set_url_host();
-  void set_host_ip();
 };
 
 #endif

@@ -42,7 +42,8 @@
     "compare": "cpp",
     "numeric": "cpp",
     "limits": "cpp",
-    "cstdint": "cpp"
+    "cstdint": "cpp",
+    "thread": "cpp"
   },
   "terminal.integrated.fontFamily": "SF Mono, Monaco, Menlo, 'Courier New', monospace",
   "terminal.integrated.fontSize": 15,

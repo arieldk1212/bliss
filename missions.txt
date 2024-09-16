@@ -5,6 +5,8 @@
 5. make a timeit function for actions.
 6. configure algorithm for timeout in http methods.
 7. use sstream for the request builder.
+8. add threads
+9. see how long it takes for functions, time.
 
 ***
 :REQUEST EXAMPLE:
