@@ -1,4 +1,4 @@
-#include "../include/request.h"
+#include "../inc/request.h"
 
 Request::Request() {
   m_client_socket = new Socket;

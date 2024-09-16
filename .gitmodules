@@ -1,15 +1,15 @@
 [submodule "cpr"]
-	path = lib/cpr
+	path = external/cpr
 	url = https://github.com/libcpr/cpr
 [submodule "requests"]
-	path = lib/requests
+	path = external/requests
 	url = https://github.com/psf/requests
 [submodule "http"]
-	path = lib/http
+	path = external/http
 	url = https://github.com/mfichman/http
 [submodule "cppcoro"]
-	path = lib/cppcoro
+	path = external/cppcoro
 	url = https://github.com/lewissbaker/cppcoro
-[submodule "lib/restclient-cpp"]
-	path = lib/restclient-cpp
+[submodule "restclient-cpp"]
+	path = external/restclient-cpp
 	url = https://github.com/mrtazz/restclient-cpp.git

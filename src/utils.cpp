@@ -1,4 +1,4 @@
-#include "../include/utils.h"
+#include "../inc/utils.h"
 
 std::string generate_user_agent() { return "BlissAgent/1.0 (" + get_os_info() + "; " + get_arch_info() + ")"; }
 

@@ -1,5 +1,5 @@
 #include <memory>
-#include "../include/bliss.h"
+#include "../inc/bliss.h"
 
 // ** SOCKET TESTING **
 

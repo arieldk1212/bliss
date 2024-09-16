@@ -8,14 +8,14 @@ set(SOURCE
   src/base.cpp
   src/request.cpp
   src/utils.cpp
-  tests/test.cpp)
+  test/test.cpp)
 
 set(HEADERS
-  include/base.h
-  include/bliss.h
-  include/headers.h
-  include/request.h
-  include/response.h
-  include/utils.h)
+  inc/base.h
+  inc/bliss.h
+  inc/headers.h
+  inc/request.h
+  inc/response.h
+  inc/utils.h)
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${HEADERS})
