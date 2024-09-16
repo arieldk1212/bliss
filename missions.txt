@@ -1,3 +1,5 @@
+## PROJECT CODE ##
+
 1. need to configure request size
 2. ssl handshake
 3. header class
@@ -8,6 +10,16 @@
 8. add threads
 9. see how long it takes for functions, time.
 
+## GENERAL ##
+
+1. Basic CMakeLists structure for the project -> Not Done.
+2. finish later 7234, 7235.
+3. Add cppcoro? add logging?
+
+## GUIDE ##
+
+* Follow Postman
+* Follow network in browser
 ***
 :REQUEST EXAMPLE:
 std::string path = "/reference/cassert/assert/";

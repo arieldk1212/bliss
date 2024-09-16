@@ -1,3 +1,0 @@
-1. Basic CMakeLists structure for the project -> Not Done.
-2. finish later 7234, 7235.
-3. Add cppcoro? add logging?
