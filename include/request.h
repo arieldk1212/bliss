@@ -30,6 +30,7 @@ public:
   Response del();
   Response options();
   Response head();
+  Response trace();
 
 private:
   void set_url_host();
