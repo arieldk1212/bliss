@@ -33,3 +33,9 @@
 
 # Build
 build
+
+# PVS Studio
+.PVS-Studio
+
+# VSCODE Settings
+.vscode
