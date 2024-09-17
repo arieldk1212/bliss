@@ -8,5 +8,5 @@ advanced, user-friendly and blissful HTTP library written in c++.
 2. cd build
 3. cmake ..
 4. make / cmake --build .
-5. ctest
+5. ctest / ctest --verbose
 * Currently non Executable Project.

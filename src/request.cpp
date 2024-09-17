@@ -32,6 +32,7 @@ void Request::request_info() {
   "Host: " << m_url_host << "\n" << "IP: " << m_host_ip << "\n" <<
   "User-Agent: " << m_user_agent << "\n";
 }
+const std::string Request::get_host() const { return m_url_host; }
 
 void Request::set_timeout(int timeout) { m_timeout = timeout; }
 void Request::set_base_url(const std::string& url) {

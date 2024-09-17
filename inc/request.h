@@ -18,6 +18,8 @@ public:
   ~Request();
 
   void request_info();
+  const std::string get_host() const;
+
   void set_timeout(int timeout);
   void set_base_url(const std::string& url);
   void set_request_data(const std::string& request_data);

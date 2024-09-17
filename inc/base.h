@@ -18,10 +18,12 @@ public:
   Socket(const std::string& socket_ip_address, uint16_t socket_port);
   ~Socket();
 
+  const Socket& socket_info() const; 
+  const std::string get_ip() const;
+
   void set_port(uint16_t socket_port);
   void set_address(const std::string& socket_ip_address);
   // INFO socket_info(const *this), returns const *this (unchangeable).
-  const Socket& socket_info() const; 
 
 private:
   void connect_socket();
