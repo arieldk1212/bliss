@@ -1,21 +1,13 @@
 cmake_minimum_required(VERSION 3.30)
-project(Bliss)
+project(Bliss LANGUAGES CXX
+  DESCRIPTION "Bliss - HTTP Library"
+  HOMEPAGE_URL "https://github.com/arieldk1212/bliss")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE
-  src/base.cpp
-  src/request.cpp
-  src/utils.cpp
-  test/test.cpp)
+add_subdirectory(src)
+include_directories(inc)
 
-set(HEADERS
-  inc/base.h
-  inc/bliss.h
-  inc/headers.h
-  inc/request.h
-  inc/response.h
-  inc/utils.h)
-
-add_executable(${PROJECT_NAME} ${SOURCE} ${HEADERS})
+enable_testing()
+add_subdirectory(test)

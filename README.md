@@ -7,5 +7,6 @@ advanced, user-friendly and blissful HTTP library written in c++.
 1. mkdir build
 2. cd build
 3. cmake ..
-4. make
-5. ./Bliss
+4. make / cmake --build .
+5. ctest
+* Currently non Executable Project.
