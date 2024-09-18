@@ -45,3 +45,7 @@ void Request::set_request_data(const std::string& request_data) { m_request_data
 void Request::set_basic_auth(const std::string& username, const std::string& password) { m_basic_auth.m_username = username; m_basic_auth.m_password = password; }
 void Request::set_url_host() { m_url_host = url_to_host(m_base_url); }
 void Request::set_host_ip() { m_host_ip = host_to_ip(m_url_host); }
+
+Response Request::get(const std::string& url) {
+  std::unique_ptr<Request> temp_req = std::make_unique<Request>(url);
+}

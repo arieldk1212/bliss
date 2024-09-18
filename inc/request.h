@@ -5,9 +5,12 @@
 #include "utils.h"
 #include "response.h"
 #include <string>
+#include <memory>
 
 const std::string PROTOCOL_VERSION = "HTTP/1.1";
 constexpr uint16_t HTTPS_PORT = 443;
+
+// TODO: change the ctor of request to not accept url, do it in the http method itself, OR  call the ctor of request inside the http method function.
 
 class Request {
 public:
@@ -25,8 +28,8 @@ public:
   void set_request_data(const std::string& request_data);
   void set_basic_auth(const std::string& username, const std::string& password);
 
-  Response get();
-  Response post();
+  Response get(const std::string& url); // TODO: start with get, implement the ctor of request according to the url.
+  Response post(const std::string& url, const std::string& object);
   Response put();
   Response patch();
   Response del();
