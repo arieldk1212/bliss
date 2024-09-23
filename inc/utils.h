@@ -13,4 +13,6 @@ std::string get_arch_info();
 
 std::string url_to_host(const std::string& url);
 
+std::string url_to_endpoint(const std::string& url);
+
 std::string host_to_ip(const std::string& host);

@@ -40,6 +40,14 @@ std::string url_to_host(const std::string& url) {
   } return "";
 }
 
+std::string url_to_endpoint(const std::string& url) {
+  std::regex endpoint_regex(R"(http?://[^/]+(/.*))");
+  std::smatch match;
+  if(std::regex_search(url, match, endpoint_regex)) {
+    return match[1];
+  } return "/";
+}
+
 std::string host_to_ip(const std::string& host) {
   struct addrinfo hints, *res;
   char ipstr[INET_ADDRSTRLEN];

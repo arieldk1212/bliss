@@ -25,7 +25,7 @@ public:
   void set_address(const std::string& socket_ip_address);
   // INFO socket_info(const *this), returns const *this (unchangeable).
 
-private:
+public:
   void connect_socket();
   void terminate();
   void send_socket(const std::string& request);

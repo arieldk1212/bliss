@@ -36,7 +36,6 @@ void Socket::connect_socket() {
 
 void Socket::terminate() { close(m_socket_fd); } 
 
-// TODO add dynamic memory allocation in the buffer ( int* x = malloc(n * sizeof(int)); ), correct this function when needed.
 void Socket::send_socket(const std::string& request) {
   if (send(m_socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
     perror("send error: "); }
