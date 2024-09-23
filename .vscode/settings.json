@@ -51,5 +51,6 @@
   "files.autoSave": "afterDelay",
   "editor.fontSize": 13,
   "editor.tabSize": 2,
-  "cmake.ignoreCMakeListsMissing": true
+  "cmake.ignoreCMakeListsMissing": true,
+  "C_Cpp.errorSquiggles": "disabled"
 }
