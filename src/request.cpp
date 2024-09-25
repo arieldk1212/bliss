@@ -6,6 +6,7 @@ Request::Request() {
 }
 
 /* TODO: delete these implementations.
+
 Request::Request(const std::string& url) {
   m_client_socket = new Socket;
   m_client_socket->set_port(HTTPS_PORT);
@@ -14,7 +15,6 @@ Request::Request(const std::string& url) {
   set_host_ip();
   m_client_socket->set_address(m_host_ip);
 }
-
 Request::Request(const std::string& url, const std::string& username, const std::string& password) {
   m_client_socket = new Socket;
   m_client_socket->set_port(HTTPS_PORT);
@@ -48,18 +48,16 @@ void Request::set_basic_auth(const std::string& username, const std::string& pas
 void Request::set_url_host() { m_url_host = url_to_host(m_base_url); }
 void Request::set_host_ip() { m_host_ip = host_to_ip(m_url_host); }
 
-std::string&& Request::handle_method(std::string&& safe_method) {
- // TODO: handles the socket connection, sending, recieveing -> the generic stuff between all the methods.
+void Request::handle_method(std::string&& method, const std::string& request) {
+  m_client_socket->connect_socket();
+  m_client_socket->send_socket(); // TODO: here we send the request -> already built in. fully functional. need to address it.
+  m_request_data = m_client_socket->receive(); // INFO: data member gets initialized with the request data.
 }
 
 Response Request::get(const std::string& url, std::optional<int> timeout) {
+  /* GET */
   set_base_url(url);
   m_request_endpoint = url_to_endpoint(url);
-  // try {
-  //   m_client_socket->connect_socket();
-  // } catch (...) {
-  //   perror("error");
-  // } try {
-  //   m_client_socket->send_socket(request);
-  // }
+  handle_method("get");
+  
 }

@@ -4,6 +4,7 @@
 #include "base.h"
 #include "utils.h"
 #include "response.h"
+#include "headers.h"
 #include <string>
 #include <memory>
 #include <optional>
@@ -32,7 +33,7 @@ public:
   void set_request_data(const std::string& request_data);
   void set_basic_auth(const std::string& username, const std::string& password);
 
-  std::string&& handle_method(std::string&& safe_method);
+  void handle_method(std::string&& safe_method);
 
   // TODO: add timeout.
   Response get(const std::string& url, std::optional<int> timeout); // INFO: should debug -> only above c++17.
@@ -49,10 +50,11 @@ private:
   void set_host_ip();
 private:
   Socket* m_client_socket = nullptr;
+  Headers m_headers;
   int m_timeout;
   std::string m_base_url;
   std::string m_url_host;
-  std::string m_request_endpoint;
+  std::string m_request_endpoint; // INFO: initialized inside the method functions.
   std::string m_host_ip;
   std::string m_request_data;
   std::string m_user_agent = generate_user_agent();
