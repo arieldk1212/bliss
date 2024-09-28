@@ -14,9 +14,9 @@ constexpr uint16_t HTTPS_PORT = 443;
 
 // TODO: change the ctor of request to not accept url, do it in the http method itself, OR  call the ctor of request inside the http method function.
 // TODO: need to handle the referer -> direction in case the url isnt provided correctly, status code 304. (in case a / is missing..),
-//       in this case we need to call the request twice, in the first one the response returns a location header value, if yes the request url will be 
-//       turned into it, and the next request will have a referer header value with the previous url, but the new request url will be the 
-//       the value that was in the location header (in the response in the first request). status code 301.
+//   in this case we need to call the request twice, in the first one the response returns a location header value, if yes the request url will be 
+//   turned into it, and the next request will have a referer header value with the previous url, but the new request url will be the 
+//   the value that was in the location header (in the response in the first request). status code 301.
 class Request {
 public:
   Request();
