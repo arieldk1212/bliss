@@ -5,9 +5,11 @@
 #include "utils.h"
 #include "response.h"
 #include "headers.h"
+
 #include <string>
 #include <memory>
 #include <optional>
+#include <cctype>
 
 const std::string PROTOCOL_VERSION = "HTTP/1.1";
 constexpr uint16_t HTTPS_PORT = 443;
@@ -30,10 +32,10 @@ public:
 
   void set_timeout(int timeout);
   void set_base_url(const std::string& url);
-  void set_request_data(const std::string& request_data);
   void set_basic_auth(const std::string& username, const std::string& password);
 
-  void handle_method(std::string&& safe_method);
+  void handle_method(std::string&& safe_method, const std::string& request);
+  void set_request_start_line(std::string&& method);
 
   // TODO: add timeout.
   Response get(const std::string& url, std::optional<int> timeout); // INFO: should debug -> only above c++17.
@@ -56,7 +58,8 @@ private:
   std::string m_url_host;
   std::string m_request_endpoint; // INFO: initialized inside the method functions.
   std::string m_host_ip;
-  std::string m_request_data;
+  std::string m_request_data; // INFO: raw data from the request.
+  std::string m_request_start_line;
   std::string m_user_agent = generate_user_agent();
   struct {
     std::string m_username;
