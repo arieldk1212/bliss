@@ -7,6 +7,8 @@
 
 typedef std::map<std::string, int> STATUS_CODE_MAP;
 
+// TODO: abstract the request data aka response from the user-agent, define functions like view, data, show, etc..
+
 class Response {
 public:
   Response(const std::string& data);

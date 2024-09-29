@@ -14,17 +14,9 @@
 const std::string PROTOCOL_VERSION = "HTTP/1.1";
 constexpr uint16_t HTTPS_PORT = 443;
 
-// TODO: change the ctor of request to not accept url, do it in the http method itself, OR  call the ctor of request inside the http method function.
-// TODO: need to handle the referer -> direction in case the url isnt provided correctly, status code 304. (in case a / is missing..),
-//   in this case we need to call the request twice, in the first one the response returns a location header value, if yes the request url will be 
-//   turned into it, and the next request will have a referer header value with the previous url, but the new request url will be the 
-//   the value that was in the location header (in the response in the first request). status code 301.
 class Request {
 public:
   Request();
-  // Request(const std::string& url);
-  // Request(const std::string& url, const std::string& username, const std::string& password);
-
   ~Request();
 
   void request_info();
@@ -34,8 +26,9 @@ public:
   void set_base_url(const std::string& url);
   void set_basic_auth(const std::string& username, const std::string& password);
 
-  void handle_method(std::string&& safe_method, const std::string& request);
   void set_request_start_line(std::string&& method);
+  void set_request_data();
+  void handle_method();
 
   Response get(const std::string& url, std::optional<int> timeout); // INFO: should debug -> only above c++17.
   Response post(const std::string& url, const std::string& object);
@@ -57,6 +50,7 @@ private:
   std::string m_url_host;
   std::string m_request_endpoint; // INFO: initialized inside the method functions.
   std::string m_host_ip;
+  std::string m_request_response; // INFO: raw data from the request.
   std::string m_request_data; // INFO: raw data from the request.
   std::string m_request_start_line;
   std::string m_user_agent = generate_user_agent();

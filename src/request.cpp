@@ -5,28 +5,6 @@ Request::Request() {
   m_client_socket->set_port(HTTPS_PORT);
 }
 
-/* TODO: delete these implementations.
-
-Request::Request(const std::string& url) {
-  m_client_socket = new Socket;
-  m_client_socket->set_port(HTTPS_PORT);
-  m_base_url = url;
-  set_url_host();
-  set_host_ip();
-  m_client_socket->set_address(m_host_ip);
-}
-Request::Request(const std::string& url, const std::string& username, const std::string& password) {
-  m_client_socket = new Socket;
-  m_client_socket->set_port(HTTPS_PORT);
-  m_base_url = url;
-  set_url_host();
-  set_host_ip();
-  m_client_socket->set_address(m_host_ip);
-  m_basic_auth.m_username = username;
-  m_basic_auth.m_password = password;
-}
-*/
-
 Request::~Request() { delete m_client_socket; }
 
 void Request::request_info() {
@@ -49,15 +27,22 @@ void Request::set_host_ip() { m_host_ip = host_to_ip(m_url_host); }
 
 void Request::set_request_start_line(std::string&& method) {
   std::string start_line = "";
-  start_line += std::toupper(method) + " "; // INFO: insurance that the method is capital.
+  start_line += method + " "; // INFO: method isnt turned into capital, can be done with toupper.
   start_line += m_request_endpoint + " ";
   start_line += PROTOCOL_VERSION + "\n";
   m_request_start_line = start_line;
 }
-void Request::handle_method(const std::string& request) {
+void Request::set_request_data() {
+  // INFO: this function sets the class member to the fully loaded and structured request, ready to send!!
+  // INFO: currentyl a simple request, need to further explore.
+  m_request_data += m_request_start_line;
+  m_request_data += m_user_agent + "\n";
+  m_request_data += m_url_host;
+}
+void Request::handle_method() {
   m_client_socket->connect_socket();
-  m_client_socket->send_socket(request); // TODO: here we send the request -> already built in. fully functional. need to address it.
-  m_request_data = m_client_socket->receive(); // INFO: data member gets initialized with the request data.
+  m_client_socket->send_socket(m_request_data); // TODO: here we send the request -> already built in. fully functional. need to address it.
+  m_request_response = m_client_socket->receive(); // INFO: data member gets initialized with the request data.
   // TODO: add timeout finctionallity here.
 }
 
@@ -65,7 +50,9 @@ Response Request::get(const std::string& url, std::optional<int> timeout) {
   /* GET */
   set_base_url(url);
   m_request_endpoint = url_to_endpoint(url);
-  set_request_start_line("GET"); // INFO: sets the start line in the request structure.
+  set_request_start_line("GET");
   // TODO: handle the headers in here before sending the request.
-  handle_method(request_data); // INFO: here we pass in the request fully loaded with headers!
+  set_request_data();
+  handle_method();
+  return Response(m_request_response);
 }
