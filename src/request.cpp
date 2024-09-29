@@ -58,6 +58,7 @@ void Request::handle_method(const std::string& request) {
   m_client_socket->connect_socket();
   m_client_socket->send_socket(request); // TODO: here we send the request -> already built in. fully functional. need to address it.
   m_request_data = m_client_socket->receive(); // INFO: data member gets initialized with the request data.
+  // TODO: add timeout finctionallity here.
 }
 
 Response Request::get(const std::string& url, std::optional<int> timeout) {

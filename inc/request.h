@@ -37,7 +37,6 @@ public:
   void handle_method(std::string&& safe_method, const std::string& request);
   void set_request_start_line(std::string&& method);
 
-  // TODO: add timeout.
   Response get(const std::string& url, std::optional<int> timeout); // INFO: should debug -> only above c++17.
   Response post(const std::string& url, const std::string& object);
   Response put();

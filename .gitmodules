@@ -13,3 +13,6 @@
 [submodule "restclient-cpp"]
 	path = external/restclient-cpp
 	url = https://github.com/mrtazz/restclient-cpp.git
+[submodule "Simple-Web-Server"]
+	path = external/Simple-Web-Server
+	url = https://github.com/eidheim/Simple-Web-Server.git
