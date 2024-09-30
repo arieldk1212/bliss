@@ -4,7 +4,6 @@ Request::Request() {
   m_client_socket = new Socket;
   m_client_socket->set_port(HTTPS_PORT);
 }
-
 Request::~Request() { delete m_client_socket; }
 
 void Request::request_info() {
@@ -25,7 +24,7 @@ void Request::set_basic_auth(const std::string& username, const std::string& pas
 void Request::set_url_host() { m_url_host = url_to_host(m_base_url); }
 void Request::set_host_ip() { m_host_ip = host_to_ip(m_url_host); }
 
-void Request::set_request_start_line(std::string&& method) {
+void Request::set_request_start_line(std::string &&method) {
   std::string start_line = "";
   start_line += method + " "; // INFO: method isnt turned into capital, can be done with toupper.
   start_line += m_request_endpoint + " ";
@@ -41,7 +40,7 @@ void Request::set_request_data() {
   m_request_data += "Accept: */* \n";
   m_request_data += "Host: " + m_url_host + "\n";
 }
-void Request::expand_request_data(std::string&& data) {
+void Request::expand_request_data(std::string &&data) {
   m_request_data += data + "\n";
 }
 void Request::reset_request_data() {
@@ -56,11 +55,12 @@ void Request::handle_method() {
 
 std::string Request::get(const std::string& url) {
   /* GET */
+  m_request_endpoint += url_to_endpoint(url);
   set_base_url(url);
-  m_request_endpoint = url_to_endpoint(url);
   set_request_start_line("GET");
   // TODO: handle the headers in here before sending the request.
   set_request_data();
+  std::cout << m_request_data;
   handle_method();
   return m_request_response;
 }

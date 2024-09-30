@@ -41,28 +41,25 @@ std::string url_to_host(const std::string& url) {
 }
 
 std::string url_to_endpoint(const std::string& url) {
-  std::regex endpoint_regex(R"(http?://[^/]+(/.*))");
+  // TODO: fix regex.
+  std::regex endpoint_regex(R"(https?:\/\/(?:www\.)?[^\/]+(\.[a-z]{2,}(?:\.[a-z]{2,})?)(\/.*))");
   std::smatch match;
   if(std::regex_search(url, match, endpoint_regex)) {
-    return match[1];
+    return match[2];
   } return "/";
 }
 
 std::string host_to_ip(const std::string& host) {
   struct addrinfo hints, *res;
   char ipstr[INET_ADDRSTRLEN];
-
   memset(&hints, 0, sizeof hints);
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
 
   int status = getaddrinfo(host.c_str(), nullptr, &hints, &res);
-
   struct sockaddr_in* ipv4 = (struct sockaddr_in*)res->ai_addr;
   void* addr = &(ipv4->sin_addr);
-
   inet_ntop(res->ai_family, addr, ipstr, sizeof ipstr);
   freeaddrinfo(res);
-
   return std::string(ipstr);
 }

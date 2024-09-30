@@ -26,10 +26,10 @@ public:
   void set_base_url(const std::string& url);
   void set_basic_auth(const std::string& username, const std::string& password);
 
-  void set_request_start_line(std::string&& method);
+  void set_request_start_line(std::string &&method);
   void set_request_data();
   void handle_method();
-  void expand_request_data(std::string&& data);
+  void expand_request_data(std::string &&data);
   void reset_request_data();
 
   std::string get(const std::string& url); // INFO: should debug -> only above c++17.
