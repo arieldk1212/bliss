@@ -42,10 +42,10 @@ std::string url_to_host(const std::string& url) {
 
 std::string url_to_endpoint(const std::string& url) {
   // TODO: fix regex.
-  std::regex endpoint_regex(R"(https?:\/\/(?:www\.)?[^\/]+(\.[a-z]{2,}(?:\.[a-z]{2,})?)(\/.*))");
+  std::regex endpoint_regex(R"(https?:\/\/[^\/]+(\/.*))");
   std::smatch match;
   if(std::regex_search(url, match, endpoint_regex)) {
-    return match[2];
+    return match[1];
   } return "/";
 }
 
