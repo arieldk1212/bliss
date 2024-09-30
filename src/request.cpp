@@ -35,18 +35,26 @@ void Request::set_request_start_line(std::string&& method) {
 void Request::set_request_data() {
   // INFO: this function sets the class member to the fully loaded and structured request, ready to send!!
   // INFO: currentyl a simple request, need to further explore.
+  // INFO: Start, User-Agent, Accept, Host.
   m_request_data += m_request_start_line;
-  m_request_data += m_user_agent + "\n";
-  m_request_data += m_url_host;
+  m_request_data += "User-Agent: " + m_user_agent + "\n";
+  m_request_data += "Accept: */* \n";
+  m_request_data += "Host: " + m_url_host + "\n";
+}
+void Request::expand_request_data(std::string&& data) {
+  m_request_data += data + "\n";
+}
+void Request::reset_request_data() {
+  m_request_data = "";
 }
 void Request::handle_method() {
   m_client_socket->connect_socket();
-  m_client_socket->send_socket(m_request_data); // TODO: here we send the request -> already built in. fully functional. need to address it.
+  m_client_socket->send_socket(m_request_data);
   m_request_response = m_client_socket->receive(); // INFO: data member gets initialized with the request data.
-  // TODO: add timeout finctionallity here.
+  // TODO: implement timeout finctionallity here.
 }
 
-Response Request::get(const std::string& url, std::optional<int> timeout) {
+std::string Request::get(const std::string& url) {
   /* GET */
   set_base_url(url);
   m_request_endpoint = url_to_endpoint(url);
@@ -54,5 +62,5 @@ Response Request::get(const std::string& url, std::optional<int> timeout) {
   // TODO: handle the headers in here before sending the request.
   set_request_data();
   handle_method();
-  return Response(m_request_response);
+  return m_request_response;
 }

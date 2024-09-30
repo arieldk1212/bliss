@@ -29,8 +29,10 @@ public:
   void set_request_start_line(std::string&& method);
   void set_request_data();
   void handle_method();
+  void expand_request_data(std::string&& data);
+  void reset_request_data();
 
-  Response get(const std::string& url, std::optional<int> timeout); // INFO: should debug -> only above c++17.
+  std::string get(const std::string& url); // INFO: should debug -> only above c++17.
   Response post(const std::string& url, const std::string& object);
   Response put();
   Response patch();

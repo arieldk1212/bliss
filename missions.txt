@@ -29,3 +29,6 @@ request += "Accept: star/star\n";
 request += "Connection: keep-alive\n";
 request += "\n";
 ***
+
+## CLANG ##
+clang++ --std=c++17 ../src/base.cpp ../src/request.cpp ../src/response.cpp ../src/utils.cpp basic_test.cpp -o test.exe
