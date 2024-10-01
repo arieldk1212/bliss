@@ -40,12 +40,12 @@ std::string url_to_host(const std::string& url) {
   } return "";
 }
 
-std::string url_to_endpoint(const std::string& url) {
-  // TODO: fix regex.
-  std::regex endpoint_regex(R"(https?:\/\/[^\/]+(\/.*))");
-  std::smatch match;
-  if(std::regex_search(url, match, endpoint_regex)) {
-    return match[1];
+std::string url_to_endpoint(const std::string &url) {
+  std::string::size_type pos = url.find("//");
+  if (pos != std::string::npos) {
+    pos += 2;
+    pos = url.find('/', pos);
+    if (pos != std::string::npos) { std::string endpoint = url.substr(pos); return endpoint; }
   } return "/";
 }
 

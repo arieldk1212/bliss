@@ -55,8 +55,8 @@ void Request::handle_method() {
 
 std::string Request::get(const std::string& url) {
   /* GET */
-  m_request_endpoint += url_to_endpoint(url);
   set_base_url(url);
+  m_request_endpoint += url_to_endpoint(url);
   set_request_start_line("GET");
   // TODO: handle the headers in here before sending the request.
   set_request_data();

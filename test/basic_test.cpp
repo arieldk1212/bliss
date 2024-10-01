@@ -3,12 +3,11 @@
 #include <cassert>
 
 int main () {
-  const std::string URL = "https://cplusplus.txt/reference/cassert/assert";
+  std::string URL = "https://cplusplus.txt/reference/cassert/assert";
   std::unique_ptr<Request> req = std::make_unique<Request>();
   // req->set_base_url(URL);
   // req->request_info();
   std::string data = req->get(URL);
-  std::cout << data;
   // Response res(req->get(URL));
   // res.view_data();
   // req->request_info();
