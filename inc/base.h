@@ -18,6 +18,11 @@ public:
   Socket(const std::string& socket_ip_address, uint16_t socket_port);
   ~Socket();
 
+  Socket(Socket&& socket); // Move
+  Socket(const Socket&) = delete; // Not Allow Copy
+  Socket& operator=(const Socket&) = delete; // Of Any Type
+  Socket& operator=(Socket&& Socket) noexcept;
+
   const Socket& socket_info() const; 
   const std::string get_ip() const;
 

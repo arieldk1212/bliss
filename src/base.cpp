@@ -15,7 +15,23 @@ Socket::Socket(const std::string& socket_ip_address, uint16_t socket_port)
     exit(EXIT_SUCCESS); }
 }
 
-Socket:: ~Socket() { terminate(); }
+Socket::~Socket() { terminate(); }
+
+Socket::Socket(Socket&& socket) {
+  m_socket_address = std::move(socket.m_socket_address);
+  m_socket_port = std::move(socket.m_socket_port);
+  m_socket_fd = std::move(socket.m_socket_fd);
+}
+
+Socket& Socket::operator=(Socket&& socket) noexcept {
+  if (this != &socket) {
+    m_socket_address = std::move(socket.m_socket_address);
+    m_socket_port = std::move(socket.m_socket_port);
+    m_socket_fd = std::move(socket.m_socket_fd);
+    socket.m_socket_fd = -1;
+  }
+  return *this;
+}
 
 const Socket& Socket::socket_info() const { return *this; }
 const std::string Socket::get_ip() const { return m_socket_address; }
@@ -34,7 +50,7 @@ void Socket::connect_socket() {
     perror("connect"); }
 }
 
-void Socket::terminate() { close(m_socket_fd); } 
+void Socket::terminate() { if (m_socket_fd) { close(m_socket_fd); }}
 
 void Socket::send_socket(const std::string& request) {
   if (send(m_socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
