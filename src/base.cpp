@@ -1,13 +1,13 @@
 #include "../inc/base.h"
 
-Socket::Socket()
-: m_socket_fd(-1) {
+Socket::Socket(int socket_port)
+: m_socket_fd(-1), m_socket_port(socket_port) {
   m_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (m_socket_fd == -1) {
     std::cerr << "socket creation error" << "\n";
     exit(EXIT_SUCCESS); }
 }
-Socket::Socket(const std::string& socket_ip_address, uint16_t socket_port)
+Socket::Socket(const std::string& socket_ip_address, int socket_port)
 : m_socket_address(socket_ip_address), m_socket_port(socket_port), m_socket_fd(-1) {
   m_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (m_socket_fd == -1) {
@@ -15,7 +15,7 @@ Socket::Socket(const std::string& socket_ip_address, uint16_t socket_port)
     exit(EXIT_SUCCESS); }
 }
 
-Socket::~Socket() { terminate(); }
+// Socket::~Socket() { terminate(); }
 
 Socket::Socket(Socket&& socket) {
   m_socket_address = std::move(socket.m_socket_address);
@@ -36,7 +36,7 @@ Socket& Socket::operator=(Socket&& socket) noexcept {
 const Socket& Socket::socket_info() const { return *this; }
 const std::string Socket::get_ip() const { return m_socket_address; }
 
-void Socket::set_port(uint16_t socket_port) { m_socket_port = socket_port; }
+void Socket::set_port(int socket_port) { m_socket_port = socket_port; }
 void Socket::set_address(const std::string& socket_ip_address) { m_socket_address = socket_ip_address; }
 
 void Socket::connect_socket() {

@@ -39,3 +39,5 @@ build
 
 # VSCODE Settings
 .vscode
+.cache
+.DS_Store
