@@ -23,19 +23,9 @@ public:
     }
   }
 
-  void connect() {
-    m_socket_connection->connect_socket();
+  std::string socket_ssl(const std::string& url) {
+    return m_socket_connection ? m_socket_connection->socket_ssl(url): "";
   }
-
-  void send_data(const std::string& data) {
-    m_socket_connection->send_socket(data);
-  }
-
-  std::string get_socket_response() {
-    return m_socket_connection ? m_socket_connection->receive() : "";
-  }
-
-  std::string ssl(const std::string& url) { return m_socket_connection->ssl(url); }
 
   const std::string get_ip() const { return m_socket_connection->get_ip(); }
 

@@ -4,7 +4,7 @@
 #include <cstddef>
 
 int main () {
-  std::string URL = "https://cplusplus.com/reference/cassert/assert/";
+  std::string URL = "https://cdn-client.medium.com/lite/static/js/main.b2097cfb.js";
   std::unique_ptr<Request> req = std::make_unique<Request>();
   std::string data = req->get(URL);
   std::cout << data;

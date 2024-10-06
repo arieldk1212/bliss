@@ -32,12 +32,10 @@ public:
   void set_address(const std::string& socket_ip_address);
   // INFO socket_info(const *this), returns const *this (unchangeable).
 public:
-  void connect_socket();
+  std::string receive(const std::string& url);
   void terminate();
-  void send_socket(const std::string& request);
-  std::string receive();
 
-  std::string ssl(const std::string& url);
+  std::string socket_ssl(const std::string& url);
 private:
   std::string m_socket_address;
   int m_socket_port;

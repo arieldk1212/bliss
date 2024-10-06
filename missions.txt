@@ -9,8 +9,9 @@
 8. add threads
 9. see how long it takes for functions, time.
 10. maybe add SocketManager, or make it a shared_ptr for the client (request methods).
-11. seperate to url class, generic method calling.
-12. add logging, cppcoro
+11. add logging, cppcoro
+12. to json -> add.
+13. add cookies!
 
 ## GUIDE ##
 * Follow Postman
@@ -18,5 +19,6 @@
 * Follow network section in browser
 
 ## CLANG ##
-clang++ --std=c++17 ../src/base.cpp ../src/request.cpp ../src/response.cpp ../src/utils.cpp basic_test.cpp -o test.exe
-clang++ --std=c++17 basic_test.cpp -o solo_test.exe
+clang++ -I/opt/homebrew/Cellar/openssl@3/3.3.2/include \
+  -L/opt/homebrew/Cellar/openssl@3/3.3.2/lib \
+  -lssl -lcrypto --std=c++17 ../src/base.cpp ../src/request.cpp ../src/response.cpp ../src/utils.cpp ../src/url.cpp basic_test.cpp -o test.exe
