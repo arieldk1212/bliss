@@ -40,7 +40,7 @@ std::string url_to_host(const std::string& url) {
   } return "";
 }
 
-std::string url_to_endpoint(const std::string &url) {
+std::string url_to_endpoint(const std::string& url) {
   std::string::size_type pos = url.find("//");
   if (pos != std::string::npos) {
     pos += 2;
@@ -50,16 +50,21 @@ std::string url_to_endpoint(const std::string &url) {
 }
 
 std::string host_to_ip(const std::string& host) {
-  struct addrinfo hints, *res;
+  struct addrinfo hints{}, *res;
   char ipstr[INET_ADDRSTRLEN];
-  memset(&hints, 0, sizeof hints);
+  memset(&hints, 0, sizeof(hints));
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
 
   int status = getaddrinfo(host.c_str(), nullptr, &hints, &res);
-  struct sockaddr_in* ipv4 = (struct sockaddr_in*)res->ai_addr;
-  void* addr = &(ipv4->sin_addr);
-  inet_ntop(res->ai_family, addr, ipstr, sizeof ipstr);
-  freeaddrinfo(res);
-  return std::string(ipstr);
+  if (status != 0) { return "Error: " + std::string(gai_strerror(status)); }
+  if (res == nullptr) { return "Error: no address info."; }
+  if (res->ai_family == AF_INET) {
+    struct sockaddr_in* ipv4 = (struct sockaddr_in*)res->ai_addr;
+    void* addr = &(ipv4->sin_addr);
+    inet_ntop(res->ai_family, addr, ipstr, sizeof(ipstr));
+    freeaddrinfo(res);
+    return std::string(ipstr);
+  } freeaddrinfo(res);
+  return "Error: not an ipv4 address";
 }

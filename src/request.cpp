@@ -1,21 +1,8 @@
 #include "../inc/request.h"
 
-Request::Request() { m_client_socket.m_create_connection(); }
-Request::~Request() { m_client_socket.m_release_connection(); }
+Request::Request() { m_client_socket.create_connection(); }
 
-const std::string Request::get_host() const { return m_url_host; }
-const std::string Request::get_url() const { return m_base_url; }
-
-void Request::set_timeout(int timeout) { m_timeout = timeout; }
-void Request::set_base_url(const std::string& url) {
-  m_base_url = std::move(url);
-  set_url_host();
-  set_host_ip();
-  m_client_socket.set_socket_address(m_host_ip);
-}
-void Request::set_basic_auth(const std::string& username, const std::string& password) { m_basic_auth.m_username = username; m_basic_auth.m_password = password; }
-void Request::set_url_host() { m_url_host = url_to_host(m_base_url); }
-void Request::set_host_ip() { m_host_ip = host_to_ip(m_url_host); }
+Request::~Request() { m_client_socket.release_connection(); }
 
 void Request::set_request_start_line(std::string&& method) {
   std::string start_line = "";
@@ -40,21 +27,17 @@ void Request::reset_request_data() {
   m_request_data = "";
 }
 void Request::handle_method() {
-  m_client_socket.get_socket_connection();
+  m_client_socket.connect();
   m_client_socket.send_data(m_request_data);
   m_request_response = m_client_socket.get_socket_response(); // INFO: data member gets initialized with the request data.
   // TODO: implement timeout finctionallity here.
 }
 
 std::string Request::get(const std::string& url) {
-  /* GET */
-  // m_base_url = std::move(url);
-  set_base_url(url);
-  m_request_endpoint += url_to_endpoint(url);
+  Url request_url(url);
   set_request_start_line("GET");
   // TODO: handle the headers in here before sending the request.
   set_request_data();
-  std::cout << m_request_data;
   handle_method();
   return m_request_response;
 }

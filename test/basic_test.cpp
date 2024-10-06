@@ -1,20 +1,16 @@
 #include "../inc/bliss.h"
 #include <cassert>
+#include <cstddef>
 
 int main () {
-  std::string URL = "https://cplusplus.txt/reference/cassert/assert";
+  std::string URL = "https://cplusplus.co.il/asd/asd/reference/cassert/assert";
   // std::unique_ptr<Request> req = std::make_unique<Request>();
-  Request req;
-  req.set_base_url(URL);
-  std::string base_url  = req.get_url();
-  std::cout<<base_url;
   // req->set_base_url(URL);
-  // req->request_info();
-  // std::string data = req.get(URL);
-  // Response res(req->get(URL));
-  // res.view_data();
-  // req->request_info();
-  assert(req.get_host() == "cplusplus.com");
+  // std::string base_url  = req->get_host();
+  // std::cout<<base_url;
+  // std::string data = req->get(URL);
+  // std::cout << data;
+  // assert(req->get_host() == "cplusplus.com");
 
   // const std::string URL2 = "https://www.facebook.com";
   // std::unique_ptr<Request> req2 = std::make_unique<Request>();

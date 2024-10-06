@@ -1,4 +1,5 @@
 #include "../inc/base.h"
+#include <stdexcept>
 
 Socket::Socket(int socket_port)
 : m_socket_fd(-1), m_socket_port(socket_port) {
@@ -15,9 +16,9 @@ Socket::Socket(const std::string& socket_ip_address, int socket_port)
     exit(EXIT_SUCCESS); }
 }
 
-// Socket::~Socket() { terminate(); }
+Socket::~Socket() { terminate(); }
 
-Socket::Socket(Socket&& socket) {
+Socket::Socket(Socket&& socket) noexcept {
   m_socket_address = std::move(socket.m_socket_address);
   m_socket_port = std::move(socket.m_socket_port);
   m_socket_fd = std::move(socket.m_socket_fd);
@@ -45,23 +46,23 @@ void Socket::connect_socket() {
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = htons(m_socket_port);
   if (inet_pton(AF_INET, m_socket_address.c_str(), &server_addr.sin_addr) <= 0) {
-    perror("inet_pton error"); }
+    throw std::runtime_error("inet_pton error"); }
   if (connect(m_socket_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-    perror("connect"); }
+    throw std::runtime_error("connect error"); }
 }
 
 void Socket::terminate() { if (m_socket_fd) { close(m_socket_fd); }}
 
 void Socket::send_socket(const std::string& request) {
   if (send(m_socket_fd, request.c_str(), strlen(request.c_str()), 0) < 0) {
-    perror("send error: "); }
+    throw std::runtime_error("send error"); }
 }
 
 std::string Socket::receive() {
   char buffer[BUFFER_LENGTH];
   std::string replay;
   if (recv(m_socket_fd, buffer, sizeof(buffer), 0) < 0) {
-    puts("recv failed");
+    throw std::runtime_error("recv failed");
   } replay = buffer;
   return replay;
 }

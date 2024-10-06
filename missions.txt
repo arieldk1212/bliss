@@ -1,7 +1,6 @@
-## PROJECT CODE ##
-
+## PROJECT MISSIONS ##
 1. need to configure request size
-2. ssl handshake
+2. ssl handshake -> github repo, stackoverflow.
 3. header class
 4. response class
 5. make a timeit function for actions.
@@ -10,26 +9,13 @@
 8. add threads
 9. see how long it takes for functions, time.
 10. maybe add SocketManager, or make it a shared_ptr for the client (request methods).
-
-## GENERAL ##
-
-1. finish later 7234, 7235.
-2. Add cppcoro? add logging?
+11. seperate to url class, generic method calling.
+12. add logging, cppcoro
 
 ## GUIDE ##
-
 * Follow Postman
+* Read 7234, 7235.
 * Follow network section in browser
-***
-:REQUEST EXAMPLE:
-std::string path = "/reference/cassert/assert/";
-std::string request = "GET /refrence/cassert/asset HTTP/1.1\n";
-request += "Host: cplusplus.com\n";
-request += "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\n";
-request += "Accept: star/star\n";
-request += "Connection: keep-alive\n";
-request += "\n";
-***
 
 ## CLANG ##
 clang++ --std=c++17 ../src/base.cpp ../src/request.cpp ../src/response.cpp ../src/utils.cpp basic_test.cpp -o test.exe

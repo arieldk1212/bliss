@@ -13,9 +13,9 @@ class Socket {
 public:
   Socket(int socket_port);
   Socket(const std::string& socket_ip_address, int socket_port);
-  ~Socket() = default;
+  ~Socket();
 
-  Socket(Socket&& socket); // Move
+  Socket(Socket&& socket) noexcept; // Move
   Socket& operator=(Socket&& Socket) noexcept; // Move Assignment Operator
   Socket(const Socket&) = delete; // Not Allow Copy
   Socket& operator=(const Socket&) = delete; // Of Any Type
