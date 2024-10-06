@@ -10,5 +10,9 @@ include_directories(inc)
 
 add_subdirectory(src)
 
+find_package(OpenSSL REQUIRED)
+include_directories(${OPENSSL_INCLUDE_DIR})
+target_link_libraries(src PRIVATE OpenSSL::SSL)
+
 enable_testing()
 add_subdirectory(test)

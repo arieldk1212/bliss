@@ -1,11 +1,16 @@
 #ifndef BASE_H
 #define BASE_H
 
-#include <iostream>
+#include <string>
 #include <unistd.h>
+#include <stdexcept>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#include <string>
+#include <openssl/crypto.h>
+#include <openssl/x509.h>
+#include <openssl/pem.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 
 #define BUFFER_LENGTH 80 * 1024
 
@@ -31,6 +36,8 @@ public:
   void terminate();
   void send_socket(const std::string& request);
   std::string receive();
+
+  std::string ssl(const std::string& url);
 private:
   std::string m_socket_address;
   int m_socket_port;

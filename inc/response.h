@@ -5,7 +5,6 @@
 
 #include <map>
 #include <string>
-#include <iostream>
 
 typedef std::map<std::string, int> STATUS_CODE;
 
@@ -13,11 +12,9 @@ typedef std::map<std::string, int> STATUS_CODE;
 
 class Response {
 public:
-  Response() = default;
   explicit Response(const std::string& response_data);
   ~Response() = default;
 
-  void view_data();
 
 private:
   std::string m_response_raw_data;

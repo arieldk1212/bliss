@@ -7,6 +7,7 @@
 
 class Url {
 public:
+  Url() = default;
   Url(const std::string& full_url);
   ~Url() = default;
 

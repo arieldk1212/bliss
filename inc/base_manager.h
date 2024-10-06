@@ -24,7 +24,7 @@ public:
   }
 
   void connect() {
-    return m_socket_connection->connect_socket();
+    m_socket_connection->connect_socket();
   }
 
   void send_data(const std::string& data) {
@@ -34,6 +34,10 @@ public:
   std::string get_socket_response() {
     return m_socket_connection ? m_socket_connection->receive() : "";
   }
+
+  std::string ssl(const std::string& url) { return m_socket_connection->ssl(url); }
+
+  const std::string get_ip() const { return m_socket_connection->get_ip(); }
 
 private:
   std::unique_ptr<Socket> m_socket_connection;

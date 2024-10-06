@@ -27,7 +27,7 @@ std::string get_arch_info() {
     return "Unknown Architecture";
   #endif
 }
-
+/*
 std::string url_to_host(const std::string& url) {
   const std::regex host_regex(R"((?:https?://)?([^/]+))");
   std::smatch match;
@@ -48,6 +48,7 @@ std::string url_to_endpoint(const std::string& url) {
     if (pos != std::string::npos) { std::string endpoint = url.substr(pos); return endpoint; }
   } return "/";
 }
+*/
 
 std::string host_to_ip(const std::string& host) {
   struct addrinfo hints{}, *res;

@@ -7,9 +7,3 @@
 [submodule "http"]
 	path = external/http
 	url = https://github.com/mfichman/http
-[submodule "cppcoro"]
-	path = external/cppcoro
-	url = https://github.com/lewissbaker/cppcoro
-[submodule "Simple-Web-Server"]
-	path = external/Simple-Web-Server
-	url = https://github.com/eidheim/Simple-Web-Server.git

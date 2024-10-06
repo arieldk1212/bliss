@@ -4,7 +4,5 @@
 #include "utils.h"
 #include "headers.h"
 #include "request.h"
-#include "response.h"
-#include "base_manager.h"
 
 #endif
