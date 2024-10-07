@@ -17,18 +17,17 @@ public:
     }
   }
 
+  const std::string get_ip() const { return m_socket_connection->get_ip(); }
+
   void set_socket_address(const std::string& socket_ip_address) {
     if (m_socket_connection) {
       m_socket_connection->set_address(socket_ip_address);
     }
   }
 
-  std::string socket_ssl(const std::string& url) {
-    return m_socket_connection ? m_socket_connection->socket_ssl(url): "";
+  std::string ssl_connect(const std::string& url) {
+    return m_socket_connection ? std::move(m_socket_connection->socket_ssl(url)): "";
   }
-
-  const std::string get_ip() const { return m_socket_connection->get_ip(); }
-
 private:
   std::unique_ptr<Socket> m_socket_connection;
 };

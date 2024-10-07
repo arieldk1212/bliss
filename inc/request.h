@@ -5,11 +5,12 @@
 #include "response.h"
 #include "base_manager.h"
 
+#include <sstream>
 #include <iostream>
 
 class Request {
 public:
-  static inline std::string PROTOCOL_VERSION = "HTTP/1.1";
+  const static inline std::string PROTOCOL_VERSION = "HTTP/1.1";
   enum class Method { GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD, TRACE };
 
   Request();
@@ -17,7 +18,7 @@ public:
 
   void set_request_start_line(Method method);
   void set_request_data();
-  void expand_request_data(std::string&& data);
+  void expend_request_data(std::string&& data);
   void reset_request_data();
 public:
   std::string to_string(Method method);
