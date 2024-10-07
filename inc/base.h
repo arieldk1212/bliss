@@ -9,6 +9,8 @@
 #include <openssl/err.h>
 
 #define BUFFER_LENGTH 80 * 1024
+
+/* ERROR DETECTION DEFINES */
 #define CHK_NULL(x) if ((x)==NULL) exit (1)
 #define CHK_ERR(err,s) if ((err)==-1) { perror(s); exit(1); }
 #define CHK_SSL(err) if ((err)==-1) { ERR_print_errors_fp(stderr); exit(2); }

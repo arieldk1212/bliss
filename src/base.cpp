@@ -57,7 +57,6 @@ std::string Socket::socket_ssl(const std::string& request) {
   OpenSSL_add_ssl_algorithms();
 
   SSL_CTX* ctx = SSL_CTX_new (TLS_method()); CHK_NULL(ctx);
-  // SSL_CTX_load_verify_locations(ctx, "/etc/ssl/cert.pem", NULL);
   SSL* ssl = SSL_new(ctx); CHK_NULL(ssl);
   SSL_set_fd(ssl, m_socket_fd);
   err = SSL_connect(ssl); CHK_SSL(err);

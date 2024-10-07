@@ -1,5 +1,4 @@
 #include "../inc/request.h"
-#include <sstream>
 
 Request::Request() { m_client_socket.create_connection(); }
 
