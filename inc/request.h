@@ -5,7 +5,6 @@
 #include "response.h"
 #include "base_manager.h"
 
-#include <sstream>
 #include <iostream>
 
 class Request {

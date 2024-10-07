@@ -14,7 +14,6 @@ void Request::set_request_start_line(Method method) {
 
 void Request::set_request_data() {
   reset_request_data();
-  std::stringstream ss;
   m_request_data += m_request_start_line;
   m_request_data += "User-Agent: " + m_user_agent + "\r\n";
   m_request_data += "Accept: */*\r\n";
