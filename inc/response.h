@@ -1,8 +1,6 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
-#include "headers.h"
-
 #include <map>
 #include <string>
 
@@ -17,10 +15,10 @@ public:
 
 
 private:
-  std::string m_response_raw_data;
+  std::string m_response;
   std::string m_response_body;
   STATUS_CODE m_status;
-  Headers m_headers; // TOOD: include date here.
+  // Headers m_headers; // TOOD: include date here.
 };
 
 #endif

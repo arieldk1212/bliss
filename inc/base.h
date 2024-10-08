@@ -26,17 +26,15 @@ public:
   Socket(const Socket&) = delete; // Not Allow Copy
   Socket& operator=(const Socket&) = delete; // Of Any Type
 
-  const Socket& socket_info() const; 
+  const Socket& get_socket_info() const;
   const std::string get_ip() const;
 
   void set_port(int socket_port);
   void set_address(const std::string& socket_ip_address);
   // INFO socket_info(const *this), returns const *this (unchangeable).
 public:
-  std::string receive(const std::string& url);
-  void terminate();
-
   std::string socket_ssl(const std::string& url);
+  void terminate();
 private:
   int m_socket_fd;
   int m_socket_port;

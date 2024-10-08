@@ -33,7 +33,7 @@ Socket& Socket::operator=(Socket&& socket) noexcept {
   return *this;
 }
 
-const Socket& Socket::socket_info() const { return *this; }
+const Socket& Socket::get_socket_info() const { return *this; }
 const std::string Socket::get_ip() const { return m_socket_address; }
 
 void Socket::set_port(int socket_port) { m_socket_port = socket_port; }
