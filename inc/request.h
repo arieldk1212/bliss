@@ -18,7 +18,6 @@ public:
   void set_request_start_line(Method method);
   void set_request_data();
   void expend_request_data(std::string&& data);
-  void reset_request_data();
 public:
   std::string to_string(Method method);
   std::string send_request(Method method, const std::string& url);
