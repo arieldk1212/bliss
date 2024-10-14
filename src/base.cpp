@@ -42,17 +42,15 @@ void Socket::set_address(const std::string& socket_ip_address) { m_socket_addres
 void Socket::terminate() { if (m_socket_fd) { close(m_socket_fd); }}
 
 std::string Socket::socket_ssl(const std::string& request) {
-  // TODO: reconstruct the ssl function, insure security and add certs.
   int err;
   char buf[BUFFER_LENGTH] = {0};
 
-  const std::string ssl_cert_path = "/etc/ssl/cert.pem";
-
+  // const std::string ssl_cert_path = "/etc/ssl/cert.pem";
 
   struct sockaddr_in sa;
   memset(&sa, 0,sizeof(sa));
   sa.sin_family = AF_INET;
-  sa.sin_addr.s_addr = inet_addr (m_socket_address.c_str());
+  sa.sin_addr.s_addr = inet_addr(m_socket_address.c_str());
   sa.sin_port = htons(m_socket_port);
   err = connect(m_socket_fd, (struct sockaddr*) &sa, sizeof(sa)); CHK_ERR(err, "connect");
 

@@ -14,13 +14,9 @@ typedef std::unordered_map<std::string, std::string> Header;
 struct Headers {
 public:
   Headers& operator+(std::string&& header);
-  const void serialize(std::string& request_data);
-
+  void serialize(std::string& request_data);
 private:
   Header m_headers;
 };
-
-// class RequestHeader : public Headers {};
-// class ResponseHeader : public Headers {};
 
 #endif

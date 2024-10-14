@@ -16,8 +16,14 @@ public:
   Request();
   ~Request();
 
+  void set_url(const std::string& url_);
+
+  void set_body(const std::string& body_);
+
+  void add_header(std::string&& header_);
+
   void set_request_start_line(Method method);
-  void demo_request();
+  void build_headers();
 public:
   std::string to_string(Method method);
   Response send_request(Method method, const std::string& url);
@@ -34,11 +40,8 @@ private:
   SocketManager m_client_socket;
   Url m_url;
   Headers m_header;
-  std::string m_request_body; // INFO: For Active Methods.
-  std::string m_request_response; // INFO: raw data from the request.
-  std::string m_request_data; // INFO: request ready data.
-  std::string m_request_start_line;
-  std::string m_user_agent = generate_user_agent();
+  std::string m_request_data; // INFO: request ready data
+  std::string m_request_body; // INFO: For Active Methods (POST, PULL)
 };
 
 #endif

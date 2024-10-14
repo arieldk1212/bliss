@@ -17,7 +17,6 @@ public:
   const std::string get_ip() const { return m_ip; }
 
   void parse(const std::string& url); // INFO: not sure about the way, will try.
-  void change_url(const std::string& full_url);
 
 private:
   std::string m_url;

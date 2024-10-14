@@ -11,3 +11,5 @@ std::string get_os_info();
 std::string get_arch_info();
 
 std::string host_to_ip(const std::string& host);
+
+bool timeout(int timeout);

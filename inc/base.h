@@ -2,6 +2,7 @@
 #define BASE_H
 
 #include <string>
+#include <chrono>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -21,10 +22,10 @@ public:
   Socket(const std::string& socket_ip_address, int socket_port);
   ~Socket();
 
-  Socket(Socket&& socket) noexcept; // Move
-  Socket& operator=(Socket&& Socket) noexcept; // Move Assignment Operator
-  Socket(const Socket&) = delete; // Not Allow Copy
-  Socket& operator=(const Socket&) = delete; // Of Any Type
+  Socket(Socket&& socket) noexcept;
+  Socket& operator=(Socket&& Socket) noexcept;
+  Socket(const Socket&) = delete;
+  Socket& operator=(const Socket&) = delete;
 
   const Socket& get_socket_info() const;
   const std::string get_ip() const;
