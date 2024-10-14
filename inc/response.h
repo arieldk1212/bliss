@@ -1,6 +1,7 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
+#include "headers.h"
 #include <map>
 #include <string>
 
@@ -13,12 +14,11 @@ public:
   explicit Response(const std::string& response_data);
   ~Response() = default;
 
-
 private:
   std::string m_response;
   std::string m_response_body;
   STATUS_CODE m_status;
-  // Headers m_headers; // TOOD: include date here.
+  Headers m_headers;
 };
 
 #endif

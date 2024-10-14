@@ -1,4 +1,5 @@
 #include "../inc/request.h"
+#include "response.h"
 
 Request::Request() { m_client_socket.create_connection(); }
 
@@ -11,20 +12,14 @@ void Request::set_request_start_line(Method method) {
   m_request_start_line = std::move(start_line);
 }
 
-void Request::set_request_data() {
+void Request::demo_request() {
   m_request_data.clear();
   m_request_data = m_request_start_line;
   m_request_data += "User-Agent: " + m_user_agent + "\r\n";
   m_request_data += "Accept: */*\r\n";
   m_request_data += "Host: " + m_url.get_host() + "\r\n";
   m_request_data += "Accept-Encoding: gzip, deflate, br\r\n";
-  m_request_data += "Connection: keep-alive\r\n";
-  m_request_data += "\r\n";
-}
-
-void Request::expend_request_data(std::string&& data) {
-  // TODO: turn data to list, remove last header CRLF before expending the data.
-  m_request_data += data + "\r\n";
+  m_request_data += "Connection: keep-alive\r\n\r\n";
 }
 
 std::string Request::to_string(Method method) {
@@ -40,17 +35,17 @@ std::string Request::to_string(Method method) {
   }
 }
 
-std::string Request::send_request(Method method, const std::string& url) {
+Response Request::send_request(Method method, const std::string& url) {
   m_url.parse(url);
   set_request_start_line(method);
-  set_request_data();
+  demo_request();
   std::cout << m_request_data;
   m_client_socket.set_socket_address(m_url.get_ip());
-  m_request_response = m_client_socket.ssl_connect(url);
-  return m_request_response;
+  std::string response = m_client_socket.ssl_connect(url);
+  return Response(std::move(response));
 }
 
-std::string Request::get(const std::string& url, int timeout) {
+Response Request::get(const std::string& url, int timeout) {
   // TODO: implement timeout finctionallity here.
   return send_request(Method::GET, url);
 }

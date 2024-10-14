@@ -1,12 +1,10 @@
 ## PROJECT MISSIONS ##
-1. need to configure request size
-2. ssl handshake -> github repo, stackoverflow.
-3. header class
+1. make the request builder more code readable, and not non generic -> header class.
+2. ssl handshake -> github repo, stackoverflow, more correctly, generic,
 4. response class
 6. configure algorithm for timeout in http methods.
 8. add threads
 9. see how long it takes for functions, time.
-10. maybe add SocketManager, or make it a shared_ptr for the client (request methods).
 11. add logging, cppcoro.
 12. to json -> add.
 13. add cookies!
