@@ -3,6 +3,7 @@ advanced, user-friendly and blissful HTTP library written in c++.
 
 * Currently Still in Dev.
 * Only C++ Above 17!
+* for POST|PUT|PATCH methods -> only json.
 
 ## Test
 1. mkdir build

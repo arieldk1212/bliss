@@ -4,7 +4,6 @@
 #include "headers.h"
 
 #include <map>
-
 #include <iostream>
 
 typedef std::map<std::string, int> Status;

@@ -5,7 +5,9 @@
 #include "headers.h"
 #include "response.h"
 #include "base_manager.h"
+
 #include <chrono>
+#include <string.h>
 #include <thread>
 #include <future>
 #include <iostream>
@@ -28,6 +30,7 @@ public:
   void build_headers();
 public:
   std::string to_string(Method method);
+  void active_middleware(std::string&& method);
   Response send_request(Method method, const std::string& url);
 
   Response get(const std::string& url, int timeout = 0);
