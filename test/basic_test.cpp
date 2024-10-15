@@ -5,6 +5,7 @@
 
 int main () {
   std::string URL = "https://cplusplus.com/reference/cassert/assert/";
+  // std::string URL = "http://www.aptimize.com/";
   std::string URL2 = "https://www.example.com/";
   std::unique_ptr<Request> req = std::make_unique<Request>();
   std::unique_ptr<Request> req2 = std::make_unique<Request>();

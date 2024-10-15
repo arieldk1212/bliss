@@ -1,4 +1,6 @@
 #include "response.h"
+#include <future>
+#include <stdexcept>
 #include "../inc/request.h"
 
 Request::Request() { m_client_socket.create_connection(); }
@@ -39,18 +41,33 @@ std::string Request::to_string(Method method) {
   }
 }
 
+template<typename F, typename... Args>
+auto timeout(F&& f, std::chrono::milliseconds timeout, Args&&... args) {
+  auto task = std::packaged_task<decltype(f(args...))()> (
+    std::bind(std::forward<F>(f), std::forward<Args>(args)...)
+  );
+  auto future = task.get_future();
+  std::thread(std::move(task)).detach();
+  if (future.wait_for(timeout) == std::future_status::ready) { return future.get(); }
+  else { throw std::runtime_error("request timed out"); }
+}
+
 Response Request::send_request(Method method, const std::string& url) {
-  m_request_data.clear();
   m_url.parse(url); // INFO: inits the IP, Host, Endpoint
   set_request_start_line(method); // INFO: Creates the start line in m_request_data
   build_headers(); // INFO: builds the headers
   m_header.serialize(m_request_data); // INFO: sets the headers in m_request_data
   m_client_socket.set_socket_address(m_url.get_ip());
-  std::string response = m_client_socket.ssl_connect(url);
+  // std::string response = m_client_socket.ssl_connect(url);
+  std::string response = timeout(m_client_socket.ssl_connect(url), std::chrono::milliseconds(3000));
+
   return Response(std::move(response));
 }
 
 Response Request::get(const std::string& url, int timeout) {
-  // TODO: implement timeout finctionallity here.
   return send_request(Method::GET, url);
+}
+
+Response Request::post(const std::string& url) {
+  return send_request(Method::POST, url);
 }

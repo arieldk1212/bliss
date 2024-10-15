@@ -1,9 +1,8 @@
 ## PROJECT MISSIONS ##
+6. configure algorithm for timeout in http methods.
 4. response class, add json.
 2. ssl handshake -> github repo, stackoverflow, more correctly, generic,
-6. configure algorithm for timeout in http methods.
 8. add threads
-9. see how long it takes for functions, time.
 11. add logging, cppcoro.
 13. add cookies!
 14. add caching.

@@ -5,7 +5,9 @@
 #include "headers.h"
 #include "response.h"
 #include "base_manager.h"
-
+#include <chrono>
+#include <thread>
+#include <future>
 #include <iostream>
 
 class Request {
@@ -29,7 +31,7 @@ public:
   Response send_request(Method method, const std::string& url);
 
   Response get(const std::string& url, int timeout = 0);
-  Response post(const std::string& url, const std::string& object);
+  Response post(const std::string& url);
   Response put();
   Response patch();
   Response del();
