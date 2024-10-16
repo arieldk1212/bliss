@@ -66,6 +66,7 @@ Response Request::send_request(Method method, const std::string& url) {
   active_middleware(to_string(method));
   m_header.serialize(m_request_data);
   m_client_socket.set_socket_address(m_url.get_ip());
+
   std::string response = m_client_socket.ssl_connect(url);
 
   return Response(std::move(response));
