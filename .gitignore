@@ -40,5 +40,6 @@ build
 # VSCODE Settings
 .vscode
 .cache
+.*.h.swp
 .DS_Store
-.*.*.swp
+.*.cpp.swp
