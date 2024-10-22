@@ -41,3 +41,4 @@ build
 .vscode
 .cache
 .DS_Store
+.*.*.swp
