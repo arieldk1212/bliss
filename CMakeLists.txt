@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.29)
 project(Bliss LANGUAGES CXX
   DESCRIPTION "Bliss - HTTP Library"
   HOMEPAGE_URL "https://github.com/arieldk1212/bliss")
