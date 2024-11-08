@@ -44,3 +44,4 @@ build
 .DS_Store
 .*.cpp.swp
 cmake-build-debug
+.idea
