@@ -14,7 +14,7 @@
 
 class Request {
 public:
-  const static inline std::string PROTOCOL_VERSION = "HTTP/1.1";
+  static std::string PROTOCOL_VERSION;
   enum class Method { GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD, TRACE };
 
   Request();

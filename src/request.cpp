@@ -1,6 +1,8 @@
 #include "response.h"
 #include "../inc/request.h"
 
+std::string Request::PROTOCOL_VERSION = "HTTP/1.1";
+
 Request::Request() { m_client_socket.create_connection(); }
 
 Request::~Request() { m_client_socket.release_connection(); }
